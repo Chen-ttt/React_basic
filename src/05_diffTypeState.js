@@ -39,7 +39,7 @@ class TestComponents extends React.Component {
         <br></br>
         当前数组为: {this.state.arr}
         <br></br>
-        当前数组为: {this.state.moreArr}
+        当前more数组为: {this.state.moreArr}
         <br></br>
         当前姓名为: {this.state.person.name}
         <br></br>
