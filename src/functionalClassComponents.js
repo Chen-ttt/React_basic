@@ -1,33 +1,43 @@
 import React from "react"
 
 /**
- * 函数组件
- *  1. 创建
- *     定义首字母大写的函数Hello(), react内部会根据首字母是否大写来判断该函数是组件还是普通HTML标签
- *     该函数返回要渲染的组件, 如果不需要渲染, 则返回null
- *  2. 渲染 - 使用函数名作为组件标签名称
- *           自闭合标签<Hello/>或成对闭合标签<Hello></Hello>
+ * 事件绑定
+ *  1. 语法 - on + 事件名称 = {事件回调函数}
+ *           如 <div onClock={() => {...}}>Hello</div>
+ *  2. 注意 - react事件采用驼峰命名, 如onMouseEnter, onFocus
+ *  3. 利用参数来获取事件e
  */
 
 function Hello () {
-  return <div>Hello</div>
+  const clickHandler = (e) => {
+    console.log("Hello被点啦", e)
+  }
+  return <div onClick={clickHandler}>Hello</div>
+}
+
+class HelloComponent extends React.Component {
+  // 标准写法
+  // 避免this指向问题, 回调函数中的this永远指向的是当前的组件实例对象
+  clickHandler = (e) => {
+    console.log("HelloComponent被点啦", e)
+  }
+  render () {
+    return <div onClick={this.clickHandler}>This is a class component!</div>
+  }
 }
 
 /**
- * 类组件
- *  1. 创建
- *     import React from "react"
- *     定义首字母大写的类HelloComponent
- *     类组件必须继承React.Component父类, 以使用父类提供的方法和属性
- *     类组件必须提供render(){}方法, 且render方法必须有返回值, 返回值即为要渲染的组件
- *  2. 渲染 - 使用类名作为组件标签名称
- *           自闭合标签<Hello/>或成对闭合标签<Hello></Hello>
+ * 利用回调函数传递自定义参数
+ *  1. 绑定事件时, onClick={}中的内容改为一个回调函数的形式, 参数为空或者获取事件e
+ *  2. 执行clickHandler并传递自定义参数
+ *  注意. 参数多的时候, 需要注意形参和实参一一对应
  */
 
-class HelloComponent extends React.Component {
-  render () {
-    return <div>This is a class component!</div>
+function Click () {
+  const clickHandler = (e, msg) => {
+    console.log("Click被点啦", e, msg)
   }
+  return <div onClick={(e) => clickHandler(e, "hhh")}>Click</div>
 }
 
 function App () {
@@ -38,9 +48,12 @@ function App () {
 
       <HelloComponent />
       <HelloComponent></HelloComponent>
+
+      <Click />
     </div>
   )
 }
 
 export default App
+
 
