@@ -16,6 +16,7 @@ class TestComponents extends React.Component {
   // 3. 事件回调函数 - 通过此函数修改组件状态
   // 核心!!! 数据驱动视图, 只要修改数据, 页面会自动刷新, 无需手动操作DOM
   addAge = () => {
+    console.log(this)
     // 注意! 不可以直接用赋值语句修改state中的属性, 必须通过setState({要求改的部分数据})
     // setState方法的作用 - a.修改state中的部分数据; b.更新UI
     this.setState({
@@ -37,6 +38,15 @@ class TestComponents extends React.Component {
     )
   }
 }
+
+/**
+ * 需要特别注意!!!
+ * 在ES6之前, 没有箭头函数, addAge必须写成addAge(){}, 这时addAge中的this指向undefined
+ * 因此老代码中都必须要使用bind改变this指向
+ * 
+ * 但ES6之后, 只需要写成箭头函数即可, 箭头函数继承父级作用域(i.e.定义时所处的作用域)的this
+ * 并且react内部修改了render内部的this, 因此此时箭头函数的this指向和render的this相同
+ */
 
 
 function App () {
