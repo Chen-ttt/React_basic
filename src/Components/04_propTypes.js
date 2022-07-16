@@ -11,8 +11,14 @@
  * https://reactjs.org/docs/typechecking-with-proptypes.html
  * 
  *  props默认值
+ *    使用函数组件
  *    1. 组件名.defaultProps = {...} 设定默认值
  *    2. 直接使用函数参数默认值 !!!更推荐
+ * 
+ *    使用类组件
+ *    1. 组件名.defaultProps = {...} 设定默认值
+ *    2. class内部定义静态属性
+ *       static defaultProps = {...}
  */
 
 import React from "react"
