@@ -1,5 +1,9 @@
-/**
- * 例. 实现按键累加计数器
+/*
+ * @Description: 例. 实现按键累加计数器
+ * @Author: Tong Chen
+ * @Date: 2022-07-18 11:13:08
+ * @LastEditTime: 2022-07-19 16:20:05
+ * @LastEditors:  
  */
 
 // 1. 导入makeAutoObservable方法
