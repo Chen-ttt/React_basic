@@ -2,20 +2,23 @@
  * @Description: 
  * @Author: Tong Chen
  * @Date: 2022-08-09 16:47:18
- * @LastEditTime: 2022-08-09 17:54:51
+ * @LastEditTime: 2022-08-17 16:21:54
  * @LastEditors:  
  */
-import { addAction, squareAction } from '../actions/actions'
+import { addAction, squareAction, getAction } from '../actions/actions'
 import { connect } from 'react-redux'
 
 function Container (props) {
-  const { num, add, square } = props
+  const { state, add, square, get } = props
   return (
     <div>
-      Calculator:  <p>{num}</p>
+      Calculator:  <p>{state.num}</p>
       <button onClick={() => add(1)}>Add 1</button>
       <button onClick={() => add(2)}>Add 2</button>
       <button onClick={() => square()}>Square</button>
+      <button onClick={() => get()}>GET</button>
+
+      {state.data ? (<p>{state.data[0].name}</p>) : null}
     </div>
   )
 }
@@ -34,8 +37,9 @@ function Container (props) {
 // 当store中数据发生变化, 就会调用mapStateToProps, 将变化后的state映射到props中
 // 返回的对象会和props合并
 const mapStateToProps = (state) => {
+  console.log(state)
   return ({
-    num: state
+    state: state
   })
 }
 
@@ -45,7 +49,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return ({
     add: (num) => dispatch(addAction(num)),
-    square: () => dispatch(squareAction())
+    square: () => dispatch(squareAction()),
+    get: () => dispatch(getAction())
   })
 }
 
