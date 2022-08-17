@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Tong Chen
  * @Date: 2022-08-09 15:33:50
- * @LastEditTime: 2022-08-09 17:44:54
+ * @LastEditTime: 2022-08-16 17:29:29
  * @LastEditors:  
  */
 
@@ -33,10 +33,8 @@
  * 7. connect 将组件和store连接在一起, 见container.js
  */
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-
-import { reducer } from './reducers/math'
 import Container from './components/container'
+import store from './store/store'
 
 // test
 // 每一次通过getState查看数据时, 都会执行一次reducer函数
@@ -46,8 +44,6 @@ import Container from './components/container'
 // console.log(store.getState())
 // console.log(store.dispatch(squareAction()))
 // console.log(store.getState())
-
-const store = createStore(reducer)
 
 function App () {
   return (
