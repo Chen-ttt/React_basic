@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Tong Chen
  * @Date: 2022-09-08 18:37:06
- * @LastEditTime: 2022-09-08 19:09:12
+ * @LastEditTime: 2022-09-08 19:56:15
  * @LastEditors:  
  */
 import React from 'react'
@@ -30,6 +30,12 @@ function App () {
   const result = React.useMemo(() => {
     return dirtyWork()
   }, [number])
+
+  // 相较于React.memo, useMemo可以防止由于依赖项的引用值变化 而引起的组件重新渲染问题
+
+  // !!! 应用: 当组件之间 使用context通信时, 父组件会给子组件传递一些值例如<Provider value={...} />
+  // 但当某些不需要传递的值发生变化而引起重新渲染时, 会导致子组件也一起重新渲染
+  // 因此可以在父组件中, 将不变的 需要传递的值, 用useMemo缓存起来, 这样即使父组件重新渲染, 只要useMemo中的值不变, 子组件也不会重新渲染
 
   // !!! 替代方案
   // 将表示时钟的h1组件和输入框组件分离, 自己管理自己的状态, 有自己的单一职责, 不要互相影响
